@@ -2,7 +2,6 @@ import { doc, setDoc } from 'firebase/firestore'
 import { db } from '../../firebase/config'
 import React, { useEffect, useState } from 'react'
 import Router from 'next/router'
-import { Navbar } from '../../components'
 
 const randomID = uuid()
 
