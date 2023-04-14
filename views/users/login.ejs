@@ -1,0 +1,78 @@
+<% layout('/layouts/boilerplate')%>
+<div class="container-for-login-form">
+<h1 class="mb-4 login-text-style">Login</h1>
+<form action="/login" method="POST" class="validated-form" novalidate>
+
+    <div class="mb-2">
+        <input class="form-control" type="email" id="email" name="email" placeholder=" " required>
+        <label for="email" class="form-label">Email</label>
+
+    </div>
+
+    <div class="mb-2">
+        <input class="form-control" type="password" id="password" name="password" placeholder=" " required>
+        <label for="password" class="form-label">Password</label>
+
+    </div>
+    <button class="btn btn-secondary mb-2">Login</button>
+    <p>New User? <a href="/register">Register</a></p>
+</form>
+</div>
+
+<style>
+
+.container-for-login-form{
+        
+        position: absolute;
+    }
+  
+   input#email.form-control,input#password.form-control {
+        width: 238px;
+        
+    }
+    label {
+      color: #999;
+      transform: translate(-4px, -24px);
+      transition: all 0.2s ease-out;
+      
+      
+    }
+    input:focus + label {
+      color: #111;
+      transform: translate(-4px, -84px);
+      
+      
+    }
+    input:focus + label,
+    input:not(:placeholder-shown) + label  {
+      color: #111;
+      transform: translate(4px, -60px);
+      
+    
+    }
+    label {
+  display: block;
+  transform: translate(0, -44px);
+  
+}
+
+@supports (not (-ms-ime-align:auto)) {
+    label {
+      color: #999;
+      transform: translate(4px, -24px);
+      transition: all 0.2s ease-out;
+      
+    }
+
+    input:focus + label,
+    input:not(:placeholder-shown) + label {
+      color: #111;
+      transform: translate(4px, -65px);
+      
+    }
+}
+.login-text-style{
+    font-family: sans-serif, Arial;
+}
+
+    </style>

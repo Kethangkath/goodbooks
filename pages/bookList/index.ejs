@@ -1,0 +1,225 @@
+<% layout('/layouts/boilerplate')%>
+<body>
+  
+
+<div class="d-flex container"> 
+  <h1 class="col-6 father-header-lol">Most read books</h1>
+  <div class="navbar search-container col-6 search-bar font-weight-bold ml-auto mt-2">
+    <i class="search-icon fas fa-search"></i>
+    <input type="text" class="search-field" placeholder="Search...">
+    <i class="close-icon fas fa-times"></i>
+  </div>
+</div>
+
+   
+    
+<% for(let book of books) { %>
+                
+<div class="card mb-3 all-box">
+    <div class="row">
+        <div class="col-md-4">
+            <img class="img-fluid m-2" alt="" src="<%=book.image%>">
+        </div>
+        <div class="col-md-8">
+            <div class="card-body">
+                <h5 class="card-title"><%=book.title%> </h5>
+                <p class="card-text">~<%=book.author%></p>
+                <p class="card-text"><%=book.description%></p>
+                <p class="card-text">
+                    <small class="text-muted"><%=book.price%></small>
+                </p>
+                <a href="/bookList/<%=book._id%>">Read <%=book.title%></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+        <% } %>
+      </body>
+ 
+<style>
+    .card.mb-3.all-box{
+        box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+    }
+
+    a{
+    color: #020202;
+    position: relative;
+    text-decoration: none;
+    border-radius: 35px;
+  }
+  
+  .search-container{
+    margin-left: auto;
+  }
+  
+</style>
+
+<script>
+const searchContainer = document.querySelector('.search-container');
+const searchIcon = document.querySelector('.search-icon');
+const searchField = document.querySelector('.search-field');
+const closeIcon = document.querySelector('.close-icon');
+
+// Expand search bar when search icon is clicked
+searchIcon.addEventListener('click', () => {
+    searchContainer.classList.add('active');
+    searchIcon.classList.add('active');
+    searchField.focus();
+});
+
+// Shrink search bar when close icon is clicked
+closeIcon.addEventListener('click', () => {
+    searchContainer.classList.remove('active');
+    searchIcon.classList.remove('active');
+    searchField.value = '';
+    searchField.blur();
+});
+
+// Shrink search bar when user clicks outside of search container
+document.addEventListener('click', (event) => {
+    const isClickInsideSearchContainer = searchContainer.contains(event.target);
+    if (!isClickInsideSearchContainer) {
+        searchContainer.classList.remove('active');
+        searchIcon.classList.remove('active');
+        searchField.value = '';
+        searchField.blur();
+    }
+});
+
+// Make search field clickable when not expanded
+searchField.addEventListener('click', () => {
+    if (!searchContainer.classList.contains('active')) {
+        searchContainer.classList.add('active');
+        searchIcon.classList.add('active');
+    }
+});
+    </script>
+    <style>
+ .close-icon {
+  position: absolute;
+  right: 10px;
+  font-size: 18px;
+  color: #666;
+  opacity: 0;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.search-container.active .close-icon {
+  opacity: 1;
+}
+@media (max-width: 481px) {
+  .search-container {
+    max-width: 150px;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .search-container {
+   margin-right:auto;
+   margin-bottom: 10px;
+  }
+  h1 {
+    font-size: 20xpx;
+    width: 100%;
+  }
+
+  .search-container .close-icon {
+    right: 20px;
+  }}
+
+.d-flex.container {
+  flex-wrap: wrap;
+}
+
+h1 {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: calc(100% - 200px);
+  margin-right: auto;
+}
+
+@media (max-width: 481px) {
+  h1 {
+    font-size: 15px;
+    width: 100%;
+  }
+}
+@media (max-width: 278px) {
+  h1 {
+    font-size: 11px;
+    width: 100%;
+  }
+}
+@media (max-width: 203px) {
+  h1 {
+    font-size: 7px;
+    width: 100%;
+  }
+}
+body{
+    background-color:rgb(109, 173, 173);
+}
+.card-body{
+  background-color: #ccc;
+}
+.search-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  height: 40px;
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  padding: 0 10px;
+  transition: all 0.3s;
+  width: 200px;
+}
+
+.search-container.active {
+  width: 300px;
+}
+
+.search-icon {
+  font-size: 18px;
+  color: #666;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.search-container.active .search-icon {
+  font-size: 0;
+  width: 0;
+  padding: 0;
+}
+
+.search-field {
+  position: absolute;
+  left: 40px;
+  border: none;
+  height: 100%;
+  background: transparent;
+  outline: none;
+  font-size: 14px;
+  width: 100%;
+  transition: all 0.3s;
+}
+
+.search-field::placeholder {
+  color: #666;
+}
+
+.search-container.active .search-field {
+  font-size: 14px;
+}
+@media (max-width:481px) {
+  div.navbar.search-container.col-6.search-bar.font-weight-bold.ml-aut:hover{
+  }
+}
+    </style>

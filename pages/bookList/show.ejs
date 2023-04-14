@@ -1,0 +1,215 @@
+<% layout('/layouts/boilerplate')%>
+<link rel="stylesheet" href="/stylesheets/stars.css">
+<?php
+
+    define( TIMEBEFORE_NOW,         'now' );
+    define( TIMEBEFORE_MINUTE,      '{num} minute ago' );
+    define( TIMEBEFORE_MINUTES,     '{num} minutes ago' );
+    define( TIMEBEFORE_HOUR,        '{num} hour ago' );
+    define( TIMEBEFORE_HOURS,       '{num} hours ago' );
+    define( TIMEBEFORE_YESTERDAY,   'yesterday' );
+    define( TIMEBEFORE_FORMAT,      '%e %b' );
+    define( TIMEBEFORE_FORMAT_YEAR, '%e %b, %Y' );
+
+    function time_ago( $time )
+    {
+        $out    = ''; // what we will print out
+        $now    = time(); // current time
+        $diff   = $now - $time; // difference between the current and the provided dates
+
+        if( $diff < 60 ) // it happened now
+            return TIMEBEFORE_NOW;
+
+        elseif( $diff < 3600 ) // it happened X minutes ago
+            return str_replace( '{num}', ( $out = round( $diff / 60 ) ), $out == 1 ? TIMEBEFORE_MINUTE : TIMEBEFORE_MINUTES );
+
+        elseif( $diff < 3600 * 24 ) // it happened X hours ago
+            return str_replace( '{num}', ( $out = round( $diff / 3600 ) ), $out == 1 ? TIMEBEFORE_HOUR : TIMEBEFORE_HOURS );
+
+        elseif( $diff < 3600 * 24 * 2 ) // it happened yesterday
+            return TIMEBEFORE_YESTERDAY;
+
+        else // falling back on a usual date format as it happened later than yesterday
+            return strftime( date( 'Y', $time ) == date( 'Y' ) ? TIMEBEFORE_FORMAT : TIMEBEFORE_FORMAT_YEAR, $time );
+    }
+
+?>  
+<body>
+    <div class="d-flex container pb-3">
+
+            <div class="col-md-4 mx-3 image-div">
+                <img src="<%=books.image%>" class="card-img-top" alt="<%=books.title%>">
+            </div>
+            <div class="col-md-6">
+                <div class="card-body">
+                    <h2 class="card-title">
+                        <%=books.title%>
+                    </h2>
+                    <h4 class="card-subtitle mb-2 text-muted">by <%=books.author%>
+                    </h4>
+                    <p class="card-text price-text"><strong>Price: </strong><%=books.price%>
+                    </p>
+                    <strong class="description-text">Description </strong>
+                    <p class="card-text description-box"><%=books.description%>
+                    </p>
+                    <p class="card-text submit-text"><strong>Submitted by: </strong>
+                        <%=books.owner.username%>
+                    </p>
+                    <% if(currentUser && books.owner.equals(currentUser._id)) { %>
+                    <div class="d-flex flex-row mb-3">
+                        
+                        <form action="/bookList/<%=books._id%>?_method=DELETE" method="POST" class="util-form">
+                            <button class="btn btn-secondary mx-1 mb-1 p-1" type="button" onclick="window.location.href='/bookList/<%=books._id%>/edit'">Edit</button>
+                            <button class="btn btn-danger mx-1 mb-1 p-1">Delete</button>
+                            <button class="btn btn-secondary mx-1 mb-1 p-1" type="button" onclick="window.location.href='/bookList'">Go back</button>
+                        </form>
+                        
+                    </div>
+                    <% } %>
+                </div>
+                
+                    
+            </div>
+        </div>
+        
+            <div class="col-md-6">
+                <h3>Leave a review</h3>
+                    <form action="/bookList/<%=books._id%>/reviews" method="post" class="mb-3">
+                       <div class="mb-3">
+                        <fieldset class="starability-basic">
+                            <legend>Rating:</legend>
+                            <input type="radio" id="no-rate" class="input-no-rate" name="review[rating]" value="0" checked aria-label="No rating." />
+                            <input type="radio" id="first-rate1" name="review[rating]" value="1" />
+                            <label for="first-rate1" title="Terrible">1 star</label>
+                            <input type="radio" id="first-rate2" name="review[rating]" value="2" />
+                            <label for="first-rate2" title="Not good">2 stars</label>
+                            <input type="radio" id="first-rate3" name="review[rating]" value="3" />
+                            <label for="first-rate3" title="Average">3 stars</label>
+                            <input type="radio" id="first-rate4" name="review[rating]" value="4" />
+                            <label for="first-rate4" title="Very good">4 stars</label>
+                            <input type="radio" id="first-rate5" name="review[rating]" value="5" />
+                            <label for="first-rate5" title="Amazing">5 stars</label>
+                          </fieldset>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="body">Review</label>
+                            <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
+                        
+                        </div>
+                         <button class="btn btn-success">Submit</button>
+                    </form>
+                <% for(let review of books.reviews){%>
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title"><%= review.owner.username%></h5>
+                            <p class="starability-result" data-rating="<%=review.rating%>">
+                                Rated: <%=review.rating%> stars
+                              </p>
+                             <% let date = new Date(review.timestamp); %>
+                                <p class="paragraph-rating">on <%= date.toDateString() %> at <%= date.toLocaleTimeString() %></p></h6>
+
+                           
+
+                            <p class="card-text"><%=review.body%></p>
+                            <% if(currentUser && review.owner.equals(currentUser._id)) { %>
+                                <form action="/bookList/<%=books._id%>/reviews/<%=review._id%>?_method=DELETE" method="post">
+                                    <button class="btn btn-sm btn-danger">Delete</button>
+                                </form>
+                            <% } %>
+                        </div>
+                    </div>
+                    <script>
+                  
+                    </script>
+                    <%}%>
+        
+    </div>   
+    </div>
+</body>
+    <script>
+      
+    </script>
+      
+
+<style>
+    .paragraph-rating{
+        font-size: 12px;
+        font-style: italic;
+    }
+
+h3 {
+  color: rgb(191, 180, 186);
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
+
+@media only screen and (max-width: 450px) {
+  .d-flex.flex-row.mb-3 {
+    position: relative;
+    display:flex;
+    flex-direction: row;
+    left: -85px;
+  }  
+}
+@media only screen and (max-width: 450px) {
+    .card-text.description-box{
+    position: relative;
+    width:100%;
+    left: -85px;
+   overflow: visible;
+  }
+}
+
+@media only screen and (max-width: 450px) {
+    .card-text.submit-text{
+    position: relative;
+    left: -85px;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .card-text.price-text{
+    position: relative;
+    left: -85px;
+    }
+}
+@media only screen and (max-width: 450px) {
+    .description-text{
+    position: relative;
+    left: -85px;
+    }
+}
+
+/*when screen size < 200px*/
+@media only screen and (max-width: 240px) {
+.card-text.description-box{
+       display: flex;
+        flex-direction: row;
+        position: relative;
+        justify-content: center;
+        right: 90px;
+    }  
+}
+@media only screen and (max-width: 260px) {
+    .card-text.price-text{
+        
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        justify-content: center;
+        right: -50px;
+    }  
+}
+@media only screen and (max-width: 207px) {
+    .card-text.price-text{
+        
+        display: flex;
+        flex-direction: row;
+        position: relative;
+        justify-content: center;
+        left:3px
+    }  
+}
+body{
+    background-color:rgb(109, 173, 173);
+}
+</style>

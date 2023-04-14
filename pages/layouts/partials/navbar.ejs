@@ -1,0 +1,59 @@
+<nav class="navbar navbar-expand-sm main-navbar-nav">
+  <div class="container-fluid">
+        <a class="navbar-brand text-white" href="/bookList">GoodBooks</a>
+        <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+          aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="toggler-icon top-bar"></span>
+          <span class="toggler-icon middle-bar"></span>
+          <span class="toggler-icon bottom-bar"></span>
+        </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto text-center justify-content-center">
+        <li class="d-flex nav-item">
+          <a class="nav-link navigation-menu-items" href="/">Home</a>
+        </li>
+        <li class="d-flex nav-item">
+          <a class="nav-link navigation-menu-items" href="/bookList">All books</a>
+        </li>
+        <li class="d-flex nav-item">
+          <a class="nav-link navigation-menu-items" href="/bookList/new">Add a new book</a>
+        </li>
+      </ul>
+      
+      
+      <div class="navbar-nav ms-auto">
+        <% if(!currentUser) {%>
+          <a href="/register" class="nav-link navigation-menu-items">Register</a>
+          <a href="/login" class="nav-link navigation-menu-items">Login</a>
+          <% } else{%>
+            <a href="/logout" class="nav-link navigation-menu-items">Logout</a>
+            <% } %>
+      </div>
+     
+    </div>
+    
+  </div>
+</nav>
+<style>
+  .navbar {
+  background-color: transparent !important;
+  transition: background-color 0.3s ease-in-out;
+}
+
+.navbar:hover {
+  background-color: #437bec !important;
+}
+
+.nav-link {
+  color: rgb(255, 255, 255) !important;
+  transition: color 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+  color: rgb(0, 0, 0) !important;
+}
+
+
+</style>
+
+

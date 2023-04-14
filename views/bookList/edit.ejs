@@ -1,0 +1,48 @@
+<% layout('/layouts/boilerplate')%>
+<div class="container fluid row mb-3">
+    <div class="text-center">
+        <h1>Edit Book </h1>
+        <div class="container form-group">
+        <div class="col-6 offset-3">
+            <form action="/bookList/<%=books._id%>?_method=PUT" method="POST" novalidate class="validated-form">
+                <div class="container fluid mb-3">
+                    <label class="form-label" for="title">Title
+                        <input class="form-control" type="text" id="title" name="books[title]" value="<%=books.title%>" required>
+                    </label>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="author">Author
+                        <input class="form-control" type="text" id="author" name="books[author]"  value="<%=books.author%>" required>
+                    </label>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="image">Image
+                        <input class="form-control" type="text" id="image" name="books[image]" value="<%=books.image%>">
+                    </label>
+                </div>
+                <label for="price">Price</label>
+                <div class="input-group">
+                    <span class="input-group-text" id="price-label">$</span>
+                    <input type="text" class="form-control" id="price" placeholder="0.00"
+                        aria-describedby="price-label" aria-label="price" name="books[price]" cols="30" rows="3" required>
+
+                </div>
+               
+
+                <div class="mb-3">
+                    <label class="form-label" for="description">Description</label>
+                        <textarea class="form-control" name="books[description]" id="description" type="text"
+                        value="<%=books.description%>" cols="30" rows="3" required></textarea>
+                    
+                </div>
+                <div class="mb-3"> <button>Update Book</button></div>
+            </form>
+           
+        </div>
+        <a href="/bookList">Go back</a>
+    </div>
+    </div>
+    
+</div>
+    

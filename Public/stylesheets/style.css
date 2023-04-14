@@ -1,0 +1,232 @@
+/* body {
+    height: 100vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.58)),
+    url("https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1856&q=80");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-shadow: 0 0.05rem 0.1rem rgba(0, 0, 0, 0.5);
+    box-shadow: inset 0 0 5rem rgba(0, 0, 0, 0.5);
+} */
+
+
+  a{
+    color: #f70000;
+    position: relative;
+    text-decoration: none;
+    border-radius: 35px;
+    z-index: 1;
+  }
+  
+  a::before {
+    background: #B2A198;
+    border-radius: 35px;
+    content: "";
+    inset: 0;
+    position: absolute;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s ease-in-out;
+    z-index: -1;
+  }
+  
+  a:hover::before {
+    border-radius: 40px;
+    transform: scaleX(1);
+    transform-origin: left;
+    z-index: -1;
+  }
+
+  .form-control.me-2.search-form-div{
+    box-shadow: none !important;
+  }
+  
+  /*DO not delete if the navbar does not work
+   .navbar.navbar-expand-sm.main-navbar-nav{
+    background-color:#CC7E85 !important;
+  } */
+
+  /*BUTTON Hover*/
+  /* button{
+    color: #cdb3b3;
+    position: relative;
+    text-decoration: none;
+    border-radius: 35px;
+  }
+  
+  button::before {
+    background:  hsl(336, 47%, 87%);
+    border-radius: 35px;
+    content: "";
+    inset: 0;
+    position: absolute;
+    transform: scaleX(0);
+    transform-origin: right;
+    transition: transform 0.4s ease-in-out;
+    z-index: -1;
+  }
+  
+  button:hover::before {
+    border-radius: 40px;
+    transform: scaleX(1);
+    transform-origin: left;
+  } */
+
+  /*END of Button hover*/
+
+  
+  
+  /* Presentational styles */
+  /* body {
+
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.58)),
+    url("https://images.unsplash.com/photo-1481627834876-b7833e8f5570?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1856&q=80");
+    background-size: cover;
+  } */
+
+ .navbar-toggler{
+  border: 0;
+ }
+ .navbar-toggler:focus,
+ .navbar-toggler:active,
+ .navbar-toggler-icon:focus{
+  outline: none;
+  box-shadow: none;
+  border: 0;
+ }
+ .toggler-icon{
+  width: 30px;
+  height: 3px;
+  background-color:#272829;/*toggle after click btn #ef496a*/
+display: block;
+transition: all 0.2s;
+ }
+ .middle-bar{
+  margin:5px auto;
+ }
+ .navbar-toggler .top-bar{
+  transform: rotate(45deg);
+  transform-origin:10% 10%;
+ }
+ .navbar-toggler .middle-bar{
+  opacity: 0;
+  filter:alpha(opacity=0);
+ }
+ .navbar-toggler .bottom-bar{
+  transform: rotate(-45deg);
+  transform-origin:10% 90%;
+ }
+
+ .navbar-toggler.collapsed .top-bar{
+  transform:rotate(0);
+ }
+ .navbar-toggler.collapsed .middle-bar{
+  opacity: 1;
+  filter:alpha(opacity=100);
+ }
+ .navbar-toggler.collapsed .bottom-bar{
+  transform:rotate(0);
+ }
+ .navbar-toggler.collapsed .toggler-icon{
+  background-color: #272829;
+
+ }
+
+
+
+/* Show <hr> tag when toggle button is checked */
+.navbar-toggler:checked + hr {
+  display: block;
+  height: 1px;
+  width:40%;
+  background-color: #000000; /* Set background color as per your requirement */
+  margin: 0;
+  border: 0;
+  padding: 0;
+}
+
+ /*===========================================Placeholder animation===========================================================*/
+/* 
+ .form-floating input[type="text"] {
+  
+  font-size: 22px;
+  padding-bottom: 35px;
+}
+
+
+.form-floating input[type="text"]:focus:not(:placeholder-shown),
+.form-floating input[type="text"]:not(:focus):valid {
+  padding-top: 2.5rem;
+}
+
+.form-floating label[for="title"],
+.form-floating label[for="author"],
+.form-floating label[for="image"] {
+  position: absolute;
+  font-style: italic;
+  top: 0;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  color: #6c757d;
+  font-size: 1.5rem;
+  font-weight: 400;
+  transform-origin: 0 0;
+  transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+  opacity: 0.5;
+  transform: translateY(0.375rem) scale(0.85);
+}
+
+
+.form-floating input[type="text"]:focus:not(:placeholder-shown) ~ label,
+.form-floating input[type="text"]:not(:focus):not(:placeholder-shown) + label {
+  visibility: hidden;
+}
+
+.form-group {
+
+  padding-top: 10px; 
+  padding-bottom: 10px; 
+  margin-bottom: 50px;
+ 
+}
+
+.form-floating [type="text"] {
+  padding-top: 1rem;
+  padding-bottom: 10px;
+  
+ 
+}
+.form-floating textarea[type="text"]:focus:not(:placeholder-shown),
+.form-floating textarea[type="text"]:not(:focus):valid {
+  padding-top: 2.5rem;
+  box-shadow: #deef49 !important;
+}
+
+.form-floating label[for="description"] {
+  position: absolute;
+  top: 0;
+  font-style: italic;
+  left: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  color: #6c757d;
+  font-size: 1.5rem;
+  font-weight: 400;
+  transform-origin: 0 0;
+  transition: transform 0.25s ease-out, opacity 0.25s ease-out;
+  opacity: 0.5;
+  transform: translateY(0.375rem) scale(0.85);
+}
+.form-floating textarea[type="text"]:focus:not(:placeholder-shown) ~ label,
+.form-floating textarea[type="text"]:not(:focus):not(:placeholder-shown) + label {
+  visibility: hidden;
+}
+.form-floating>.form-control-plaintext:focus, .form-floating>.form-control-plaintext:not(:placeholder-shown), .form-floating>.form-control:focus, .form-floating>.form-control:not(:placeholder-shown) {
+  padding-bottom: 35px;} */
+
+/*END=========================================================================================*/

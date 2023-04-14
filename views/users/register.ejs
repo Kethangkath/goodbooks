@@ -1,0 +1,83 @@
+<% layout('/layouts/boilerplate')%>
+<div class="container-for-form">
+<h1 class="mb-4 register-text-style">Register</h1>
+<form action="/register" method="POST" class="validated-form" novalidate>
+    <div class="mb-2">
+        
+        <input class="form-control" type="text" id="username" name="username" placeholder=" " required>
+        <label for="username" class="form-label">Username</label>
+    </div>
+    <div class="mb-2">
+        
+        <input class="form-control" type="email" id="email" name="email" placeholder=" " required>
+        <label for="email" class="form-label">Email</label>
+
+    </div>
+    <div class="mb-2">
+       
+        <input class="form-control" type="password" id="password" name="password" placeholder=" " required>
+        <label for="password" class="form-label">Password</label>
+ 
+    </div>
+    <button class="btn btn-secondary mb-1">Register</button><br>
+    <div class="mb-2">
+    <p> Already registered? <a href="/users/login">Login</a></p></div>
+ 
+</form>
+</div>
+<style>
+    .container-for-form{
+        
+        position: absolute;
+    }
+  
+
+    input#username.form-control,input#email.form-control,input#password.form-control {
+        width: 238px;
+    }
+    label {
+      color: #999;
+      transform: translate(-4px, -24px);
+      transition: all 0.2s ease-out;
+      
+      
+    }
+    input:focus + label {
+      color: #111;
+      transform: translate(-4px, -84px);
+      
+      
+    }
+    input:focus + label,
+    input:not(:placeholder-shown) + label  {
+      color: #111;
+      transform: translate(4px, -60px);
+      
+    
+    }
+    label {
+  display: block;
+  transform: translate(0, -44px);
+  
+}
+
+@supports (not (-ms-ime-align:auto)) {
+    label {
+      color: #999;
+      transform: translate(4px, -24px);
+      transition: all 0.2s ease-out;
+      
+    }
+
+    input:focus + label,
+    input:not(:placeholder-shown) + label {
+      color: #111;
+      transform: translate(4px, -65px);
+      
+    }
+}
+.register-text-style{
+    font-family: sans-serif, Arial;
+}
+
+    </style>

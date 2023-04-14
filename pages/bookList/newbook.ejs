@@ -1,0 +1,47 @@
+<% layout('/layouts/boilerplate')%>
+
+    <div class="container fluid row mb-3">
+        
+        <div class="text-center">
+            <h1 class="mt-1">New Book Entry</h1>
+            <div class="container form-group">
+                <div class="col-6 offset-3">
+                    <form action="/bookList" method="POST" novalidate class="validated-form" enctype="multipart/form-data">
+                        <label>Title</label>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="text" id="title" name="books[title]" placeholder=" "
+                                required>
+                            <label class="form-label" for="title">Title</label>
+                        </div>
+                        <!-- <label>Image</label>
+                        <div class="form-floating mb-3">
+                            <input class="form-control" type="text" id="image" name="books[image]" placeholder=" "
+                                required>
+                            <label class="form-label" for="image">Image </label>
+
+                        </div> -->
+                        <input type="file" name="image" id="">
+
+                        <div class="input-group">   
+                            <span class="input-group-text" id="price-label">£</span>
+                            <input type="text" class="form-control" id="price" placeholder="0.00"
+                                aria-describedby="price-label" aria-label="price" name="books[price]" required>
+
+                        </div>
+
+                        <label>Description</label>
+                        <div class="form-floating mb-3">
+
+                            <input class="form-control" type="text" id="description" name="books[description]"
+                                placeholder=" " required></textarea>
+                            <label class="form-label" for="description">Description </label>
+                        </div>
+                        <div class="mb-3">
+                            <button class="btn border rounded-pill mb-3" onclick="validateForm()">Add New book</button>
+                            <a class="btn border rounded-pill mb-3" href="/bookList">Go back</a>
+                        </div>
+
+                    </form>
+                </div>
+
+            </div>
